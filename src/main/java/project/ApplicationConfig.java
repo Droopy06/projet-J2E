@@ -47,7 +47,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     @Bean
     public DataSource getDataSource() {
         final BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/project");
         dataSource.setUsername("root");
         dataSource.setPassword("");
