@@ -20,7 +20,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     }
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/todo/index").setViewName("todo/index::content");
+        registry.addViewController("/project/accueil").setViewName("project/accueil::content");
     }
     @Override
     public void configureDefaultServletHandling(
@@ -30,7 +30,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     @Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/resources/todo");
+        resolver.setPrefix("/resources/project");
         resolver.setSuffix(".html");
         return resolver;
     }
