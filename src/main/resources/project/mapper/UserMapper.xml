@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="project.models.UserRepository">
+    <resultMap type="User" id="UserResult">
+        <id column="id" property="id" />
+        <result column="pseudo" property="pseudo" />
+        <result column="password" property="password" />
+    </resultMap>
+
+    <sql id="basic_col">
+        SELECT id, pseudo, password
+    </sql>
+
+    <insert id="save" parameterType="Users" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO users(pseudo, password)
+        VALUES (#{pseudo}, #{password})
+    </insert>
+
+    <select id="findAllUser" parameterType="int" resultMap="UserResult">
+        <include refid="basic_col"/>
+        FROM users
+        ORDER BY id
+    </select>
+
+    <select id="findById" resultMap="UserResult" parameterType="int">
+        <include refid="basic_col"/>
+        FROM users
+        WHERE id = #{id}
+        ORDER BY id
+    </select>
+</mapper>

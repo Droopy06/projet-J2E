@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.classes.Users;
 import project.models.UserRepository;
-import project.models.UserRepositoryImpl;
 
 import java.util.List;
 
