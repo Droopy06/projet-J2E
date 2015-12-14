@@ -19,11 +19,24 @@ public class UsersController {
     @Autowired
     private UserService mUserService;
 
+    @RequestMapping(value = "/users/create", method = RequestMethod.GET)
+    public String create(){
+        return "project/usercreate";
+    }
+
     @RequestMapping(value = "/users/add", method = RequestMethod.GET)
-    public String ajouterUser(@Valid @ModelAttribute Users user, BindingResult results){
+    public String addUser(@Valid @ModelAttribute Users user, BindingResult results){
         //request the service
         //Add user after submit form
         mUserService.createUser(user);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/users/connect", method = RequestMethod.GET)
+    public String connect(@Valid @ModelAttribute Users user, BindingResult results){
+        //request the service
+        //Add user after submit form
+        mUserService.getUser(1);
         return "redirect:/";
     }
 }
