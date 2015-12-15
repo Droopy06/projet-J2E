@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap.min.css}"
+          href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.1.1/css/bootstrap-theme.css}"
+          href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css"/>
+    <title>Project URL</title>
+</head>
+<body>
+    <div class="row row-no-padding">
+        <div class="col-md-4 col-md-offset-4">
+            <h2>Mes url perso</h2>
+        </div>
+    </div>
+    <div class="row row-no-padding">
+        <div class="col-md-8 col-md-offset-2 table-responsive">
+            <table class="table table-condesered table-hovered">
+                <thead>
+                    <tr>
+                        <td>Le nom</td>
+                        <td>L' url</td>
+                        <td>Supprimer</td>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item,iterStat : ${service}">
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.longUrl}"></td>
+                    <td th:text="${item.id}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
