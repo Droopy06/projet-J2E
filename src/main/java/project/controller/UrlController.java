@@ -6,10 +6,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 import project.classes.Url;
 import project.services.UrlService;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 
 /**
  * Created by LAMOOT Alexandre on 15/12/15.
@@ -21,13 +23,17 @@ public class UrlController {
     private UrlService mUrlService;
 
     @RequestMapping(value = "/url", method = RequestMethod.GET)
-    public String urlByUser(){
-        return "project/urllist";
+    public ModelAndView urlByUser(){
+        HashMap<String, Object> model = new HashMap<String, Object>();
+        model.put("service", mUrlService.listAllUrl());
+        return new ModelAndView("project/urllist",model);
     }
 
     @RequestMapping(value = "/url/create", method = RequestMethod.GET)
-    public String createNewUrl(){
-        return "project/urlcreate";
+    public ModelAndView createNewUrl(){
+        HashMap<String, Object> model = new HashMap<String, Object>();
+        model.put("url", new Url());
+        return new ModelAndView("project/urlcreate",model);
     }
 
     @RequestMapping(value = "/url/add", method = RequestMethod.GET)
@@ -35,6 +41,6 @@ public class UrlController {
         //request the service
         //Add url after submit form
         mUrlService.createUrl(url);
-        return "redirect:/connect";
+        return "project/url/create";
     }
 }
