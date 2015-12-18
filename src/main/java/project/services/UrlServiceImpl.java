@@ -18,6 +18,7 @@ public class UrlServiceImpl implements UrlService {
 
     @Override
     public Url createUrl(Url url) {
+        url.setShortUrl(generateUrl());
         urlMapper.save(url);
         return null;
     }
@@ -35,8 +36,8 @@ public class UrlServiceImpl implements UrlService {
     @Override
     public String generateUrl() {
         String chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-        String pass = "";
-        for(int x=0;x<6;x++)
+        String pass = "http://";
+        for(int x=0;x<4;x++)
         {
             int i = (int)Math.floor(Math.random() * 62);
             pass += chars.charAt(i);

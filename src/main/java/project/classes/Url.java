@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 public class Url{
 
     private Integer id;
-    @NotNull
     private String shortUrl;
     @NotNull
     private String longUrl;

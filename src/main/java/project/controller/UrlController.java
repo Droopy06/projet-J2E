@@ -10,7 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 import project.classes.Url;
 import project.services.UrlService;
 
-import javax.validation.Valid;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 
 /**
@@ -36,11 +40,29 @@ public class UrlController {
         return new ModelAndView("project/urlcreate",model);
     }
 
-    @RequestMapping(value = "/url/add", method = RequestMethod.GET)
-    public String addUrl(@Valid @ModelAttribute Url url, BindingResult results){
+    @RequestMapping(value = "/url/add", method = RequestMethod.POST)
+    public String addUrl(@ModelAttribute Url url, BindingResult results){
         //request the service
         //Add url after submit form
-        mUrlService.createUrl(url);
-        return "project/url/create";
+        if(urlIsValid(url.getLongUrl())){
+            mUrlService.createUrl(url);
+        }
+        return "redirect:/url/create";
+    }
+
+    private boolean urlIsValid(String urlBase) {
+        try {
+            URL url = new URL(urlBase);
+            URLConnection conn = url.openConnection();
+            conn.connect();
+        } catch (MalformedURLException e) {
+            return false;
+        } catch (IOException e) {
+            // return false; // Si on veut tester si la page est une 404
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 }

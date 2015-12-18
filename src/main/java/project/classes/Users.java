@@ -7,6 +7,7 @@ public class Users{
     private Integer id;
     private String pseudo;
     private String password;
+    private String confirmPassword;
 
     public Integer getId() {
         return id;
@@ -28,7 +29,15 @@ public class Users{
         return password;
     }
 
+    public String getConfirmPassword() { return confirmPassword; }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }
